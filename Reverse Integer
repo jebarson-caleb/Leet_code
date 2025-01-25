@@ -1,0 +1,21 @@
+class Solution(object):
+    def reverse(self, x):
+        """
+        :type x: int
+        :rtype: int
+        """
+        max_int=2147483647
+        min_int=-2147483648
+        sign = 1 if (x>0) else -1
+        x = x*sign
+        rev_num = 0
+        while x != 0:
+            rev_num = rev_num*10+x%10
+            x//=10
+        rev_num*=sign
+        if rev_num > max_int or rev_num < min_int:
+            return 0
+        else:
+            return rev_num
+
+        
