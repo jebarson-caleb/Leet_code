@@ -1,0 +1,27 @@
+class Solution(object):
+    def firstMissingPositive(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        nums = [num for num in nums if num > 0]
+        
+        if 1 not in nums:
+            return 1
+        
+        n = len(nums)
+        
+        for i in range(n):
+            if nums[i] <= 0 or nums[i] > n:
+                nums[i] = 1
+        
+        for num in nums:
+            abs_num = abs(num)
+            if abs_num <= n:
+                nums[abs_num - 1] = -abs(nums[abs_num - 1])
+        
+        for i in range(n):
+            if nums[i] > 0:
+                return i + 1
+        
+        return n + 1
