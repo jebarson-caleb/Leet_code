@@ -1,0 +1,14 @@
+class Solution(object):
+    def isValid(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        st_end = {'(':')','[':']','{':'}'}
+        stack = []
+        for char in s:
+            if char in st_end:
+                stack.append(char)
+            elif not stack or st_end[stack.pop()] != char:
+                return False
+        return not stack
