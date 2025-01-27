@@ -1,0 +1,21 @@
+class Solution(object):
+    def searchRange(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        if target not in nums:
+            return [-1,-1]
+        ind = 0
+        r_lst = []
+        while ind < len(nums):
+            if nums[ind] == target:
+                r_lst.append(ind)
+            ind+=1
+        if len(r_lst) == 1:
+            return [r_lst[0],r_lst[0]]
+        elif len(r_lst) == 2:
+            return r_lst
+        else:
+            return [r_lst[0],r_lst[-1]]
