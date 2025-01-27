@@ -1,0 +1,15 @@
+class Solution(object):
+    def singleNumber(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        unique = {}
+        for i in nums:
+            if i not in unique:
+                unique[i] = 1
+            else:
+                unique[i] +=1
+        for i in unique:
+            if unique[i] == 1:
+                return i
