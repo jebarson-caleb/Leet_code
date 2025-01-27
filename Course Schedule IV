@@ -1,0 +1,22 @@
+class Solution(object):
+    def checkIfPrerequisite(self, numCourses, prerequisites, queries):
+        """
+        :type numCourses: int
+        :type prerequisites: List[List[int]]
+        :type queries: List[List[int]]
+        :rtype: List[bool]
+        """
+        is_prerequisite = [[False] * numCourses for _ in range(numCourses)]
+        for u, v in prerequisites:
+            is_prerequisite[u][v] = True
+        for k in range(numCourses):
+            for i in range(numCourses):
+                for j in range(numCourses):
+                    if is_prerequisite[i][k] and is_prerequisite[k][j]:
+                        is_prerequisite[i][j] = True
+
+        result = []
+        for u, v in queries:
+            result.append(is_prerequisite[u][v])
+
+        return result
