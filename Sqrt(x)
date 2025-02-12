@@ -1,0 +1,10 @@
+class Solution(object):
+    def mySqrt(self, x):
+        """
+        :type x: int
+        :rtype: int
+        """
+        import math
+        if x >= 0 and x<=2**31-1:
+            res = math.sqrt(x)
+            return int(res)
