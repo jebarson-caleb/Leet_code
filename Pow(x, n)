@@ -1,0 +1,35 @@
+class Solution(object):
+    def myPow(self, x, n):
+        """
+        :type x: float
+        :type n: int
+        :rtype: float
+        """
+        if x > 100.0 or x < -100.0:
+            return False
+        if n == 0:
+            return 1
+        if x == 0:
+            return 0
+        if -2**31 > n or n > 2**31-1:
+            return False
+
+        # Handle negative exponent
+        if n < 0:
+            x = 1 / x
+            n = -n
+
+        result = 1
+        while n:
+            if n % 2:
+                result *= x
+                if result == float('inf') or result == float('-inf'):
+                    return False
+            x *= x
+            n //= 2
+
+        if -10**4 <= result <= 10**4:
+            return result
+        else:
+            return False
+FTC
