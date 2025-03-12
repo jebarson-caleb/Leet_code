@@ -1,0 +1,13 @@
+class Solution(object):
+    def searchMatrix(self, matrix, target):
+        """
+        :type matrix: List[List[int]]
+        :type target: int
+        :rtype: bool
+        """
+        row_index = 0
+        while row_index < len(matrix):
+            if target in matrix[row_index]:
+                return True
+            row_index+=1
+        return False
