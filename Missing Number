@@ -1,0 +1,20 @@
+class Solution(object):
+    def missingNumber(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        if 0 not in nums:
+            return 0
+        if len(nums) == 1:
+            if nums[0] == 0:
+                return 1
+            else:
+                return nums[0]-1
+        c = 0
+        nums.sort()
+        while c < len(nums)-1:
+            if nums[c]+1 != nums[c+1]:
+                return nums[c]+1
+            c +=1
+        return nums[-1]+1
