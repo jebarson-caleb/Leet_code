@@ -1,0 +1,19 @@
+class Solution(object):
+    def coinChange(self, coins, amount):
+        """
+        :type coins: List[int]
+        :type amount: int
+        :rtype: int
+        """
+        # Initialize the dp array with amount + 1 (an arbitrarily large number)
+        dp = [amount + 1] * (amount + 1)
+        dp[0] = 0
+        
+        # Build up the dp array
+        for i in range(1, amount + 1):
+            for coin in coins:
+                if i - coin >= 0:
+                    dp[i] = min(dp[i], dp[i - coin] + 1)
+        
+        # If dp[amount] has not changed, return -1; otherwise, return dp[amount]
+        return dp[amount] if dp[amount] != amount + 1 else -1
