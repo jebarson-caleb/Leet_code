@@ -1,0 +1,21 @@
+class Solution(object):
+    def shortestToChar(self, s, c):
+        """
+        :type s: str
+        :type c: str
+        :rtype: List[int]
+        """
+        n = len(s)
+        result = [float('inf')] * n
+        prev_c_index = -float('inf')
+        for i in range(n):
+            if s[i] == c:
+                prev_c_index = i
+            result[i] = i - prev_c_index
+        prev_c_index = float('inf')  
+        for i in range(n - 1, -1, -1):
+            if s[i] == c:
+                prev_c_index = i
+            result[i] = min(result[i], prev_c_index - i)
+
+        return result
