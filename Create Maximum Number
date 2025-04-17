@@ -1,0 +1,28 @@
+class Solution(object):
+    def maxNumber(self, nums1, nums2, k):
+        """
+        :type nums1: List[int]
+        :type nums2: List[int]
+        :type k: int
+        :rtype: List[int]
+        """
+        def max_subsequence(nums, length):
+            stack = []
+            drop = len(nums) - length
+            for num in nums:
+                while drop > 0 and stack and stack[-1] < num:
+                    stack.pop()
+                    drop -= 1
+                stack.append(num)
+            return stack[:length]
+
+        def merge(subseq1, subseq2):
+            return [max(subseq1, subseq2).pop(0) for _ in range(len(subseq1) + len(subseq2))]
+
+        max_num = []
+        for i in range(max(0, k - len(nums2)), min(k, len(nums1)) + 1):
+            subseq1 = max_subsequence(nums1, i)
+            subseq2 = max_subsequence(nums2, k - i)
+            max_num = max(max_num, merge(subseq1, subseq2))
+        
+        return max_num
