@@ -1,0 +1,29 @@
+class Solution(object):
+    def numFriendRequests(self, ages):
+        """
+        :type ages: List[int]
+        :rtype: int
+        """
+        age_count = [0] * 121  
+        for age in ages:
+            age_count[age] += 1
+        
+        requests = 0
+        for x in range(121):  
+            if age_count[x] == 0:
+                continue
+            for y in range(121):  
+                if age_count[y] == 0:
+                    continue
+                if y <= 0.5 * x + 7:  
+                    continue
+                if y > x:  
+                    continue
+
+                if x == y:
+    
+                    requests += age_count[x] * (age_count[x] - 1)
+                else:
+                    requests += age_count[x] * age_count[y]
+        
+        return requests
