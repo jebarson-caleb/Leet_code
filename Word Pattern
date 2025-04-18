@@ -1,0 +1,22 @@
+class Solution(object):
+    def wordPattern(self, pattern, s):
+        """
+        :type pattern: str
+        :type s: str
+        :rtype: bool
+        """
+        s = s.split()
+        if len(s) != len(pattern):
+            return False
+        d= {}
+        used_words = set() 
+        for i in range(len(pattern)):
+            if pattern[i] in d:
+                if d[pattern[i]] != s[i]:
+                    return False
+            else:
+                if s[i] in used_words:
+                    return False
+                d[pattern[i]] = s[i]
+                used_words.add(s[i])
+        return True
