@@ -1,0 +1,17 @@
+class Solution(object):
+    def majorityElement(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        d = {}
+        for i in nums :
+            if i not in d :
+                d[i] = 1
+            else :
+                d[i] += 1
+        r_lst = []
+        for j in d:
+            if d[j] > len(nums)/3:
+                r_lst.append(j)
+        return r_lst
