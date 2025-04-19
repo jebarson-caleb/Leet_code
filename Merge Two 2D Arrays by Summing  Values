@@ -1,0 +1,19 @@
+class Solution(object):
+    def mergeArrays(self, nums1, nums2):
+        """
+        :type nums1: List[List[int]]
+        :type nums2: List[List[int]]
+        :rtype: List[List[int]]
+        """
+        from collections import defaultdict
+        
+        value_map = defaultdict(int)
+        
+        for id_, val in nums1:
+            value_map[id_] += val
+        
+        for id_, val in nums2:
+            value_map[id_] += val
+        
+        result = [[id_, value_map[id_]] for id_ in sorted(value_map)]
+        return result
