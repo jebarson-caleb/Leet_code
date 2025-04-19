@@ -1,0 +1,27 @@
+class Solution(object):
+    def combinationSum(self, candidates, target):
+        """
+        Iterative version using a stack to simulate backtracking.
+        :type candidates: List[int]
+        :type target: int
+        :rtype: List[List[int]]
+        """
+        candidates.sort()
+        stack = [(0, [], 0)]  # (start_index, current_combination, current_sum)
+        result = []
+
+        while stack:
+            index, comb, total = stack.pop()
+
+            if total == target:
+                result.append(comb)
+                continue
+            if total > target:
+                continue
+
+            for i in range(index, len(candidates)):
+                new_total = total + candidates[i]
+                if new_total <= target:
+                    stack.append((i, comb + [candidates[i]], new_total))
+
+        return result
